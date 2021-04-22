@@ -270,7 +270,6 @@ int main(int arg, int* argc)
     }
     
     IntCodeComputer haxx0r_3000(vals);
-    cout << "Run startMode 1 (Part 1): " << haxx0r_3000.run(0) << endl;
-    cout << "Run startMode 5 (Part 2): "<< haxx0r_3000.run(1) << endl;
-    cout << "Run startMode 5 (Part 2): "<< haxx0r_3000.run(1) << endl;
+    cout << "Run startMode 1 (Part 1): " << haxx0r_3000.run(1) << endl;
+    cout << "Run startMode 5 (Part 2): "<< haxx0r_3000.run(5) << endl;
 }
