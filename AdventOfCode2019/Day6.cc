@@ -9,7 +9,6 @@
 
 using namespace std;
 
-
 static int res = 0;
 
 void findCount(string input, vector<pair<string,string>>& vecPair, int counter)
@@ -41,8 +40,7 @@ string getFirstNode(vector<pair<string,string>>& vecPair)
 
 string findPreviousOrbit(string input, vector<pair<string,string>>& vecPair)
 {
-    string tempString = "";   
-    
+    string tempString = "";     
     auto it = find_if(vecPair.begin(), vecPair.end(), [input](pair<string,string> p)
     {
         return input == p.second;
@@ -91,9 +89,7 @@ int partTwo(vector<pair<string,string>>& vecPair)
             score = score < tempScore ? score : tempScore;
         }
     }
-    
-    return score;
-    
+    return score; 
 }
 
 int main(int arg, int* argc)
