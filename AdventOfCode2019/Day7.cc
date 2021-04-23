@@ -37,14 +37,6 @@ public:
     int run(queue<int> input);
     void hardReset(vector<int> vec);
     bool isHalted(){return runHalted;}
-    void printMem()
-    {
-        for(auto x : memory)
-        {
-            cout << x << ", ";
-        }
-        cout << endl;
-    }
     
 protected:
     void OpCode1(int paramOne, int paramTwo, int paramThree);
