@@ -89,6 +89,8 @@ IntCodeComputer::IntCodeComputer(vector<int> memory_) : memory(memory_)
 
 int IntCodeComputer::run(queue<int> input)
 {
+    // This is abit weird, maybe remove as member var, or inject it with another call
+    // input doesnt feel so runny
     inputs = input;
     // Set startMode (input on website)
     
