@@ -128,7 +128,6 @@ int IntCodeComputer::run(int startMode_)
         // Run instruction
         keyIt->second(paramOne, paramTwo, paramThree);
         
-        cout << opCode << " : " << paramOne << " : " << paramTwo << " : " << paramThree << " : " << getMemoryPointer() << endl;
     }
     
     reset(memoryCpy);
@@ -160,7 +159,7 @@ bool IntCodeComputer::getParameters(int& paramOne, int& paramTwo, int& paramThre
     Mode modePar1 = static_cast<Mode>(charDigitToInt(memoryAdress[0]));
     Mode modePar2 = static_cast<Mode>(charDigitToInt(memoryAdress[1]));
     Mode modePar3 = static_cast<Mode>(charDigitToInt(memoryAdress[2]));
-    // cout << "mem add: " << memoryAdress << " : " <<int(modePar1) <<" : " <<int(modePar2) << " : " <<int(modePar2)  <<endl; 
+    
     return getParameterModeVal(modePar1, paramOne, P_IDX_1) && 
            getParameterModeVal(modePar2, paramTwo, P_IDX_2) &&
            getParameterModeVal(modePar3, paramThree, P_IDX_3);
@@ -270,6 +269,6 @@ int main(int arg, int* argc)
     }
     
     IntCodeComputer haxx0r_3000(vals);
-    cout << "Run startMode 1 (Part 1): " << haxx0r_3000.run(1) << endl;
+    / << "Run startMode 1 (Part 1): " << haxx0r_3000.run(1) << endl;
     cout << "Run startMode 5 (Part 2): "<< haxx0r_3000.run(5) << endl;
 }
