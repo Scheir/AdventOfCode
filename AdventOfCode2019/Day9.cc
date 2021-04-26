@@ -329,7 +329,25 @@ void IntCodeComputer::adjustRelativeBase(long long val)
 {
     relativeBase += val;
 }
+
+long long partOne(vector<long long> vals)
+{
+    queue<int> q;
+    q.push(1);
+   
+    IntCodeComputer haxxor_3000(vals);
+    return haxxor_3000.run(q);
+}
  
+long long partTwo(vector<long long> vals)
+{
+    queue<int> q;
+    q.push(2);
+   
+    IntCodeComputer haxxor_3000(vals);
+    return haxxor_3000.run(q);
+}
+
 int main(int arg, char** argc)
 {
     vector<long long> vals;
@@ -340,10 +358,7 @@ int main(int arg, char** argc)
         if(cin.peek() == ',')
             cin.ignore();
     }
-   
-    queue<int> q;
-    q.push(2);
-   
-    IntCodeComputer haxxor_3000(vals);
-    cout << haxxor_3000.run(q) << endl;
+    
+    cout << "PartOne: " << partOne(vals) << endl;
+    cout << "PartTwo: " << partTwo(vals) << endl;
 }
