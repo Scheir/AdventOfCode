@@ -149,9 +149,6 @@ int main(int arg, int* argc)
         }
     }
     
-    for(auto x : lines)
-        cout << x << endl;
-    
     auto coordAndRes = partOne(lines);
     cout << "PartOne: " << get<2>(coordAndRes) << endl;
     cout << "PartTwo: " << partTwo(lines, get<0>(coordAndRes), get<1>(coordAndRes), 200) << endl;
