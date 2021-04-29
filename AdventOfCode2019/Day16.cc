@@ -105,8 +105,8 @@ int partTwo(vector<int> number)
     }
     // Since elements are added from the back of numbers reverse is needed here.
     reverse(vec[0].begin(), vec[0].end()); 
-
-
+   
+    // Will be the target vector in first iteration.
     vec[1] = vector<int>(vec[0].size(), 0);
 
     for(int i = 0; i < phases; i++)
