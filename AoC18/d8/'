@@ -1,0 +1,26 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int solve(vector<int> vec, int& idx)
+{
+    int sum = 0;
+    int childs = vec[idx++];
+    int metaEntries = vec[idx++];
+    cout << idx << ":" << childs << ":" << metaEntries << endl;
+} 
+
+int main(){
+    int num = 0;
+    vector<int> vec;
+    while(cin >> num){
+        vec.push_back(num);
+    }
+
+    //PartOne
+    int idx = 0;
+    int res = solve(vec, idx);
+}
