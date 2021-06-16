@@ -100,11 +100,13 @@ int main(){
                 string tstr = str.substr(pos, space-pos);
                 if(!x.second(tstr)){
                     ok2 = false;
+                    break;
                 }
             }
             else{
                 ok = false;
                 ok2 = false;
+                break;
             }
         }
         if(ok){
