@@ -96,7 +96,6 @@ int main(){
             if(str.find(x.first) != string::npos){
                 int pos = str.find(x.first) + 4;
                 int space = str.find(" ", pos);
-                space = space == 0 ? 100 : space;
                 string tstr = str.substr(pos, space-pos);
                 if(!x.second(tstr)){
                     ok2 = false;
