@@ -1,0 +1,46 @@
+#include <map>
+#include <iostream>
+#include <string>
+#include <unordered_map>
+#include <utility>
+
+using namespace std;
+
+int main(){
+    string str;
+    map<int,pair<int,int>> m;
+    int idx = 1;
+    int lastSpoken = 0;    
+    int last = 0;
+    while(getline(cin, str, ',')){
+        m[stoi(str)] = make_pair(0,idx);
+        idx++;
+        lastSpoken = stoi(str);
+    }
+
+    m.erase(lastSpoken);
+    for(int i = 0;i < 10; i++){
+        cout << lastSpoken<< ", ";
+        auto it = m.find(lastSpoken);
+        if(it == m.end()){
+            lastSpoken = 0;
+            m[lastSpoken].first = m[lastSpoken].second;
+            m[lastSpoken].second = idx;
+            idx++;
+            cout << "in if " << endl;
+            continue;
+        }
+        
+        int fir = it->second.first; int sec = it->second.second;
+        m[lastSpoken].first = m[lastSpoken].second
+        m[lastSpoken].second.second = idx;
+        lastSpoken = sec - fir;
+        idx++;
+        cout << "outside of if " << fir << ":" << sec << endl;
+    }
+    for(auto x : m)
+        cout << x.first << ",";
+    cout << endl;
+    cout << "PartOne: " << lastSpoken<< endl;
+}
+
