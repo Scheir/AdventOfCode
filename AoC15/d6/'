@@ -1,0 +1,4 @@
+arr = []
+with open("i1") as file:
+    for line in file:
+        print(line.split(" "))
