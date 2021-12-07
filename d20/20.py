@@ -15,30 +15,13 @@ def rot_flip(m):
     m7 = m3[::-1]
     return [m,m1,m2,m3,m4,m5,m6,m7]
 
-arr = {} 
-temp = []
-for i in open("i1"):
-    i = i.strip()
-    if not i:
-        arr[tile] = temp 
-        continue
-    elif re.search("\d",i):
-        temp = []
-        tile = re.findall("\d+",i)[0]
-        continue
-    else:
-        temp.append(list(i))
-
-arr[tile] = temp
-n = int(math.sqrt(len(arr))) 
-nn = len(temp)
 #Backtracking
 def bt(mat,used,i,j,pairs):
     nm = deepcopy(mat)
     p = deepcopy(pairs)
     u = used.copy()
     if i == n and j == 0:
-        return (pairs,mat)
+        return (pairs,nm)
     for k in arr.keys():
         if k not in used:
             comb = rot_flip(arr[k])
@@ -59,6 +42,23 @@ def bt(mat,used,i,j,pairs):
                         return bt(nm, u, i+1,0, p)
                     else:
                         return bt(nm, u, i, j+1, p)
+arr = {} 
+temp = []
+for i in open("i1"):
+    i = i.strip()
+    if not i:
+        arr[tile] = temp 
+        continue
+    elif re.search("\d",i):
+        temp = []
+        tile = re.findall("\d+",i)[0]
+        continue
+    else:
+        temp.append(list(i))
+
+arr[tile] = temp
+n = int(math.sqrt(len(arr))) 
+nn = len(temp)
 #part1
 for x in arr.keys():
     res = [[None]*n for x in range(n)]
@@ -71,3 +71,51 @@ for x in arr.keys():
         s = int(ret[(0,0)])*int(ret[(n-1,0)])*int(ret[(0,n-1)])*int(ret[(n-1,n-1)])
         print(s)
         break
+
+#Create the image, remove borders of each image part
+newmat = []
+for l in range(n):
+    tvv = deepcopy(mat[l][0])
+    for a,b in enumerate(tvv):
+        tvv[a] = b[1:-1]
+    tvv = tvv[1:-1]
+    for j in range(1,n):
+        for i,x in enumerate(mat[l][j][1:-1]):
+            tvv[i] = tvv[i]+x[1:-1]
+    for x in tvv:
+        newmat.append(x)
+
+
+#Monster arrays to match
+m1 = list("                  # ")
+m2 = list("#    ##    ##    ###")
+m3 = list(" #  #  #  #  #  #   ")
+
+#Try all combinations to see which one has the monsters
+comb = rot_flip(newmat)
+res = 0
+for co in comb:
+    tr = 0
+    for i in range(len(co)-3):
+        a,b,c = co[i:i+3]
+        for y in range(len(co[0])-len(m1)):
+            ok = True 
+            aa,bb,cc = a[y:y+len(m1)],b[y:y+len(m2)], c[y:y+len(m2)]
+            for z,x in enumerate(aa):
+                if  m1[z] == "#" and x == '.':
+                    ok = False
+                    break
+            for z,x in enumerate(bb):
+                if m2[z] == "#" and x == '.':
+                    ok = False
+                    break
+            for z,x in enumerate(cc):
+                if m3[z] == "#" and x == '.':
+                    ok = False
+                    break
+            if ok: 
+                tr += m1.count("#") + m2.count("#") + m3.count("#")
+    res = res if res > tr else tr
+
+hashes = sum([x.count("#") for x in newmat])  
+print(hashes-res)
