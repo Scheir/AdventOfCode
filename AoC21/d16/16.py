@@ -17,14 +17,15 @@ def parse(string, idx):
     t = int(string[idx+3:idx+6],2)
     if t == 4:
         idx += 6
-        v = 0
+        binstring = ""
         while True:
-            # for each iteration we have one val in hexa base 16
-            v = v*16 + int(string[idx+1:idx+5],2)
+            # for each iteration add the binals to a string and covert it to int with base 2
+            # when returning
+            binstring += string[idx+1:idx+5]
             stop = string[idx] == '0'
             idx += 5
             if stop:
-                return idx,v
+                return idx,int(binstring,2)
     else:
         #We have an operator packet. They contain more packets inside
         #Will recurse and eventually end up in literal
