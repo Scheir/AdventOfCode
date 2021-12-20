@@ -1,0 +1,38 @@
+from copy import deepcopy
+a,b = open("i2").read().split("\n\n")
+
+arr = []
+mat = b.rstrip().split("\n") 
+
+C = len(mat[0])
+for i in range(len(mat)):
+    mat[i] = '.'*(C//2) + mat[i] + '.'*(C//2+1)
+
+for x in range(5):
+    mat.insert(0, "."*2*C)
+    mat.append("."*2*C)
+
+mat = list(map(list, mat))
+
+dx = [-1,0,1]
+dy = [-1,0,1]
+for x in mat:
+    print(x)
+for _ in range(2):
+    tm = deepcopy(mat)
+    for i in range(1, len(mat)-1):
+        for j in range(1, len(mat[i])-1):
+            b = ""
+            for x in dx:
+                for y in dy:
+                    b += '1' if tm[i+x][j+y] == "#" else "0"
+            b = int(b,2)
+            mat[i][j] = a[b]
+    print("----------")
+    for x in mat:
+        print(x)
+
+res = sum([x.count("#") for x in mat])
+print(res)
+
+
