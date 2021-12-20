@@ -26,7 +26,6 @@ for i in range(len(beacs)):
 FOUND = set([tuple(x) for x in beacs[0]])
 POS = {}
 POS[0] = (0,0,0)
-TEMP = {}
 def solve():
     for i in range(len(beacs)):
         if i in POS:
