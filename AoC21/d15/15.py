@@ -20,8 +20,11 @@ t = []
 for i in open("i1"):
     i = i.strip()
     t.append([int(x) for x in list(i)])
-
+#PartOne
 print(dijkstra(t))
+
+#PartTwo
+#Same thing, but we have to create the bigger matrix first
 mat = [[0]*len(t)*5 for x in range(len(t[0])*5)]
 for _ in range(5):
     for __ in range(5):
