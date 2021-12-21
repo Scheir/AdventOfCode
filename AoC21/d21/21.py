@@ -67,6 +67,6 @@ print(turns * min(scores))
 # then we are ready to reuse that state and so and so on
 
 memoiz = {}
-print(DP(7,9,0,0,memoize))
+print(DP(7,9,0,0,memoiz))
 
 print(max(max(*memoiz.values())))
