@@ -46,6 +46,7 @@ def DP(p1,p2,sp1,sp2):
             for roll3 in (1,2,3):
                 # np is player one but need a new var
                 # to keep the memoiz at line 55 compact
+                # and to keep value for next iteration
                 np = p1+roll1+roll2+roll3
                 assert np <= 20
                 np = np if np <= 10 else np-10
