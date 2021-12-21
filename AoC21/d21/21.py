@@ -1,13 +1,9 @@
 p1 = 7
 p2 = 9
-
-
 scores = [0,0]
 turns = 0
 b = True
-
 die = 1
-
 while scores[0] < 1000 and scores[1]<1000:
     for i in range(3): 
         turns += 1
