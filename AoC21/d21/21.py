@@ -2,7 +2,7 @@ def rolls():
     dice = [1,2,3]
     return [i+j+k for i in dice for j in dice for k in dice]
 
-def DP(p1,p2,sp1,sp2):
+def DP(p1,p2,sp1,sp2,memoiz):
     p1c,p2c,sp1c,sp2c = p1,p2,sp1,sp2
     res = [0,0]
     #P1 wins
@@ -25,7 +25,7 @@ def DP(p1,p2,sp1,sp2):
         # Next round player two is player one and p1 is p2
         # we will keep going until we hit scores of atleast 21
         # or a state we have seen before.
-        scores = DP(p2,p1,sp2,sp1)
+        scores = DP(p2,p1,sp2,sp1,memoize)
         ## Since we are alternating p1 and p2 the result
         ## of next is also alternated
         ## if we dont do this all scores end up in p1
@@ -67,6 +67,6 @@ print(turns * min(scores))
 # then we are ready to reuse that state and so and so on
 
 memoiz = {}
-print(DP(7,9,0,0))
+print(DP(7,9,0,0,memoize))
 
 print(max(max(*memoiz.values())))
