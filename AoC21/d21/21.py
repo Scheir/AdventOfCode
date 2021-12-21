@@ -15,8 +15,9 @@ def DP(p1,p2,sp1,sp2):
     if (p1,p2,sp1,sp2) in memoiz:
         return memoiz[(p1,p2,sp1,sp2)]
     # Roll three times with all outcomes
+    # Recurse where rolls are added to p1
+    # and p2 is first (p1) in next iteration
     for cur_roll in rolls():
-        # np is player one but need a new var
         p1 = p1c+cur_roll
         assert p1 <= 20
         p1 = p1 if p1 <= 10 else p1-10
@@ -54,7 +55,6 @@ while scores[0] < 1000 and scores[1]<1000:
     else:
         scores[1] += p2
     b = not b 
-
 print(turns * min(scores))
 
 # Part Two
