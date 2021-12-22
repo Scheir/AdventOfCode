@@ -39,8 +39,6 @@ def calculate_unique_for_cube(current,sub_cubes):
         # we take that cube part that is a sub part of current
         # we add it to the proccessing list
         # Otherwise continue with next
-
-        #The logic below is explained in the "picture" above the method
         if x0b > x1 or x1b < x0:
             continue
         else:
