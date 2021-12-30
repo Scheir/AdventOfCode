@@ -15,7 +15,9 @@ def rot_flip(m):
     m7 = m3[::-1]
     return [m,m1,m2,m3,m4,m5,m6,m7]
 
-#Backtracking
+#Backtracking algorithm, starting with a set image at cord 0,0 and 
+#trying to find a solution
+#Returning the big matrix and pair with ID's coordinates
 def bt(mat,used,i,j,pairs):
     nm = deepcopy(mat)
     p = deepcopy(pairs)
@@ -39,9 +41,13 @@ def bt(mat,used,i,j,pairs):
                     p[(i,j)] = k 
                     u.add(k)
                     if j == n-1:
-                        return bt(nm, u, i+1,0, p)
+                        ret = bt(nm, u, i+1,0, p)
                     else:
-                        return bt(nm, u, i, j+1, p)
+                        ret = bt(nm, u, i, j+1, p)
+                    if ret:
+                        return ret
+    return False
+
 arr = {} 
 temp = []
 for i in open("i1"):
@@ -59,7 +65,10 @@ for i in open("i1"):
 arr[tile] = temp
 n = int(math.sqrt(len(arr))) 
 nn = len(temp)
+
 #part1
+#Try for each smaller picture as the fixed 0,0 part
+#until we find a solution
 for x in arr.keys():
     res = [[None]*n for x in range(n)]
     res[0][0] = arr[x]
@@ -67,6 +76,8 @@ for x in arr.keys():
     s.add(x)
     ret = bt(res,s,0,1,{(0,0):x}) 
     if ret:
+        #Ret is the pair (ID,(x,y))
+        #Mat is the final picture
         ret,mat = ret
         s = int(ret[(0,0)])*int(ret[(n-1,0)])*int(ret[(0,n-1)])*int(ret[(n-1,n-1)])
         print(s)
