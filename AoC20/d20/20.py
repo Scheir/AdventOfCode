@@ -44,6 +44,8 @@ def bt(mat,used,i,j,pairs):
                         ret = bt(nm, u, i+1,0, p)
                     else:
                         ret = bt(nm, u, i, j+1, p)
+                    # If ret is not false, then it means that we found a solution
+                    # and ret pairs and the final matrix, return it and we are done!
                     if ret:
                         return ret
     return False
