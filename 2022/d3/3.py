@@ -1,11 +1,14 @@
 from collections import *
+from string import ascii_lowercase as LOWER
+from string import ascii_uppercase as UPPER
+
 def res(d):
     ret = 0
     for k,v in d.items():
-        if k.islower():
-            ret += (ord(k)-ord('a')+1)*v
+        if k in LOWER:
+            ret += (LOWER.index(k)+1)*v
         else:
-            ret += (ord(k)-ord('A')+27)*v
+            ret += (UPPER.index(k)+27)*v
     return ret
 
 
