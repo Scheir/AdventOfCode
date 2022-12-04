@@ -10,8 +10,8 @@ for a,b,c,d in arr:
     x = range(a,b+1)
     y = range(c,d+1)
     x,y = min(x,y,key=comp), max(x,y,key=comp)
-    res += 1 if all(i in y for i in x) else 0
-    res2 += 1 if any(i in y for i in x) else 0
-
+    res += all(i in y for i in x)
+    res2 += any(i in y for i in x)
+    
 print(res)
 print(res2)
