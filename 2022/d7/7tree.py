@@ -7,7 +7,7 @@ class node:
     def __str__(self):
         return f'{self.name}, {self.v}'
 
-arr = [x.strip() for x in open("i1.txt")]
+arr = [x.strip() for x in open("i7.txt")]
 
 # Set all values
 def set_all_values(n):
@@ -32,11 +32,14 @@ for row in arr:
         elif arg == "/":
             n = root
         else:
-            n = next(x for x in n.neigh if x.name == arg)
+            # Create node if it doesnt exist
+            n = next((x for x in n.neigh if x.name == arg), node(arg,n))
     elif cur[0] != "$":
         a,b = cur 
         if a == "dir":
-            n.neigh.append(node(b, n))
+            # Create if it doesnt exist
+            if not any(x.name == b for x in n.neigh):
+                n.neigh.append(node(b, n))
         else:
             n.v += int(a)
 
