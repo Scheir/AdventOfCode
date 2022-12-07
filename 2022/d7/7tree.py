@@ -1,4 +1,3 @@
-from collections import defaultdict
 class node:
     def __init__(self,name,p):
         self.name = name
@@ -8,7 +7,7 @@ class node:
     def __str__(self):
         return f'{self.name}, {self.v}'
 
-arr = [x.strip() for x in open("i7.txt")]
+arr = [x.strip() for x in open("i1.txt")]
 
 # Set all values
 def set_all_values(n):
