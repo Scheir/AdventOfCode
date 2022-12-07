@@ -17,6 +17,7 @@ def set_all_values(n):
     for x in n.dirs:
         set_all_values(x)
         n.size += x.size 
+        
 #Get all values
 def get_all_values(n):
     ret = [n.size]
