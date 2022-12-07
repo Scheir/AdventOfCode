@@ -40,9 +40,11 @@ for row in arr:
             # Create if it doesnt exist
             if not any(x.name == b for x in n.neigh):
                 n.neigh.append(node(b, n))
-        # Should check if ls has been used here as well.
-        # In a real word case add the files (file + size) to the node
-        # instead of just values, (n.files (should be set) )
+        # Should check if the value a has allready been added earlier,
+        # otherwise 2 x ls from same dir scenario would fail.
+        # A more proper solution is to add another member to node which
+        # represents the files in which are not dir. node.files = set(file1, file2, file 3 ...)
+        # Then we calculate node.v after the population phase is done
         else:
             n.v += int(a)
 
