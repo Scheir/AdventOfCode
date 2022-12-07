@@ -40,6 +40,9 @@ for row in arr:
             # Create if it doesnt exist
             if not any(x.name == b for x in n.neigh):
                 n.neigh.append(node(b, n))
+        # Should check if ls has been used here as well.
+        # In a real word case add the files (file + size) to the node
+        # instead of just values, (n.files (should be set) )
         else:
             n.v += int(a)
 
