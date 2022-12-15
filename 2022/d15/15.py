@@ -18,23 +18,19 @@ def no_beac(arr,X,Y):
 
 
 Y = 2000000
-# Can we find an optimal search range?
-print(sum(no_beac(arr,X,Y) for X in range(-10000000,10000000)))
+#print(sum(no_beac(arr,X,Y) for X in range(-10000000,10000000)))
+
 
 ## Part 2
 MAX_XY = 4000000 
 
-
 for x,y,xx,yy,dist in arr:
     #Iterate all posible coords for current sensor
     # Start with X = x + DIST+1 and Y = y  (one further than Beac for cur S)
-    # Next iter is => X = x+DIST, Y = y+1
-    # Ivestigate this (X,Y) In ALL directions so we move in a pattern as in the example picture
+    # Then X = x+DIST, Y = y+1, In ALL directions so we move in a pattern as in the example picture
     for X in range(dist+2):
-        Y = y+(dist+1-X)
-        X = X+x 
         # All directions
-        for NX,NY in ((X,Y),(-X,Y),(X,-Y),(-X,-Y)):
+        for NX,NY in ((x+X,y+(dist+1-X)),(x-X,y+(dist+1-X)),(X+x,y-(dist+1-X)),(x-X,y-(dist+1-X))):
             if 0<=NX<=MAX_XY and 0<=NY<=MAX_XY:
                 if not no_beac(arr,NX,NY) and not (NX,NY) in BS:
                     print(NX*MAX_XY+NY)
