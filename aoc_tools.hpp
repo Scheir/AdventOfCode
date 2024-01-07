@@ -4,6 +4,7 @@
 #include <string>
 #include <sstream>
 #include <utility>
+#include <type_traits>
 
 using namespace std;
 
@@ -25,6 +26,9 @@ vector<string> getLines(){
  * the regex you pass as template parameters which type
  * you want to convert the group to. (int, double, str, etc..)
  */
+
+// Type trait used to check if its one or many groups
+
 template <typename T>
 T stringToType(const string& s){
    T value;
@@ -33,6 +37,7 @@ T stringToType(const string& s){
    return value;
 }
 
+// Helper functions
 template <size_t index, typename T>
 void groupToValue(T& v, const smatch m){
    v = stringToType<T>(m[index+1].str());
@@ -46,7 +51,7 @@ void groupsToTuple(tuple<Ts...>& t, const smatch m){
    }
 }
 
-template<typename... Ts>
+template<typename... Ts, typename=enable_if_t<sizeof...(Ts) >= 2>>
 vector<tuple<Ts...>> findAll(const regex re, string str){
    vector<tuple<Ts...>> v;
    smatch m;
@@ -59,12 +64,16 @@ vector<tuple<Ts...>> findAll(const regex re, string str){
    return v;
 }
 
-/* findall implementation when we only have one group */
-vector<string> findAll(const regex re, string str){
-   vector<string> v;
+// Specialization for only one group
+template <typename T>
+vector<T> findAll(const regex re, string str){
+   vector<T> v;
    smatch m;
    while(regex_search(str,m,re)){
-      v.push_back(m[1].str());
+      stringstream ss(m[1].str());
+      T val;
+      ss >> val;
+      v.push_back(val);
       str = m.suffix();
    }
    return v;
