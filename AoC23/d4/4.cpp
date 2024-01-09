@@ -21,11 +21,8 @@ vector<card> parse(){
    return ret;
 }
 
-
-
 // Used for Part Two
 vector<int> scorePerCard;
-
 int partOne(const vector<card>& cards){
    auto lambda = [](int left, const auto& c){
       auto [_,winners,nums] = c;
