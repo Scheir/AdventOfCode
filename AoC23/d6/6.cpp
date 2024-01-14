@@ -15,7 +15,7 @@ pair<vector<ll>, vector<ll>> parse(){
    return {time,dist};
 }
 
-ll binarySearch(ll time, ll dist, ll low, ll high, std::function<bool(ll,ll)> f){
+ll binarySearch(const ll time, const ll dist, ll low, ll high, std::function<bool(ll,ll)> f){
    if(low+1 >= high){
       return f(low,high) ? high : low;
    }
