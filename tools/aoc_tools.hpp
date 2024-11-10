@@ -1,9 +1,11 @@
+#ifndef AOC_TOOLS_HPP
+#define AOC_TOOLS_HPP
+
 #include <regex>
 #include <vector>
 #include <iostream>
 #include <string>
 #include <sstream>
-#include <utility>
 #include <functional>
 
 using namespace std;
@@ -11,7 +13,7 @@ using namespace std;
 namespace AOC{
 
 /* Get all lines from cin */
-vector<string> getLines(){
+inline vector<string> getLines(){
    string ts;
    vector<string> v;
    while(getline(cin, ts)){
@@ -27,7 +29,7 @@ vector<string> getLines(){
  * you want to convert the group to. (int, double, str, etc..)
  */
 template <typename T>
-T stringToType(const string& s){
+inline T stringToType(const string& s){
    T value;
    stringstream ss(s);
    ss >> value;
@@ -35,12 +37,12 @@ T stringToType(const string& s){
 }
 
 template <size_t index, typename T>
-void groupToValue(T& v, const smatch m){
+inline void groupToValue(T& v, const smatch m){
    v = stringToType<T>(m[index+1].str());
 }
 
 template <size_t index, typename... Ts>
-void groupsToTuple(tuple<Ts...>& t, const smatch m){
+inline void groupsToTuple(tuple<Ts...>& t, const smatch m){
    if constexpr(index < sizeof...(Ts)){
       groupToValue<index>(get<index>(t), m);
       groupsToTuple<index+1, Ts...>(t, m);
@@ -48,7 +50,7 @@ void groupsToTuple(tuple<Ts...>& t, const smatch m){
 }
 
 template<typename... Ts>
-vector<tuple<Ts...>> findAll(const regex re, string str){
+inline vector<tuple<Ts...>> findAll(const regex re, string str){
    vector<tuple<Ts...>> v;
    smatch m;
    while(regex_search(str,m,re)){
@@ -61,7 +63,7 @@ vector<tuple<Ts...>> findAll(const regex re, string str){
 }
 
 /* findall implementation when we only have one group */
-vector<string> findAll(const regex re, string str){
+inline vector<string> findAll(const regex re, string str){
    vector<string> v;
    smatch m;
    while(regex_search(str,m,re)){
@@ -72,7 +74,7 @@ vector<string> findAll(const regex re, string str){
 }
 
 /* python split version, (available by default in newer cpp) */
-vector<string> split(string str, const string delim){
+inline vector<string> split(string str, const string delim){
    vector<string> ret;
    size_t start {0};
    size_t end {str.find(delim)};
@@ -88,7 +90,7 @@ vector<string> split(string str, const string delim){
 
 
 template <typename F, typename... ARGS>
-void timeIt(F&& f, ARGS&&... args){
+inline void timeIt(F&& f, ARGS&&... args){
    auto start = chrono::high_resolution_clock::now();
    std::invoke(f, args...);
    auto end = chrono::high_resolution_clock::now();
@@ -98,3 +100,5 @@ void timeIt(F&& f, ARGS&&... args){
 }
 
 } // namespace AOC
+
+#endif // AOC_TOOLS_HPP
