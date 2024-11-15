@@ -7,8 +7,13 @@ set(DAY_SOURCES
 add_executable(runAoC main.cpp ${DAY_SOURCES})
 target_link_libraries(runAoC PRIVATE tools)
 
+# executable should be in root folder.
+set_target_properties(runAoC PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
+
 # Add the benchmark executable
 add_executable(benchmarks benchmarks/benchmarks.cpp ${DAY_SOURCES})
+# benchmark executable should end up in root folder
+set_target_properties(benchmarks PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 
 
 # TODO Potentially adding google tests aswell

@@ -1,11 +1,11 @@
 #include <iostream>
 #include <string>
-#include "../tools/aoc_tools.hpp"
+#include <utility>
 
-extern std::string day1(const std::string&);
-extern std::string day2(const std::string&);
+extern std::pair<std::string, std::string> day1(const std::string&);
+extern std::pair<std::string, std::string> day2(const std::string&);
 
-std::string runDay(int day) {
+std::pair<std::string, std::string>runDay(int day) {
    switch (day) {
        case 1: return day1("input"); break;
        case 2: return day2("input"); break;
@@ -15,8 +15,10 @@ std::string runDay(int day) {
    }
 }
 
-void printer(const std::string& result, const uint16_t day) {
-   std::cout << "Day " << day << " answer: " << result << std::endl;
+void printer(const std::pair<std::string,std::string>& result, const uint16_t day) {
+   std::cout << "Day " << day << std::endl;
+   std::cout << "part one: " << result.first << std::endl;
+   std::cout << "part two: " << result.second << std::endl;
 }
 
 int main(int argc, char** argv) {

@@ -11,7 +11,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -O2 -std=c++20")
 add_subdirectory(tools)
 
 # Add the AoC25 directory
-add_subdirectory(AoC25)
+add_subdirectory(AoC24)
 
 # Use FetchContent to download Google Benchmark
 include(FetchContent)
